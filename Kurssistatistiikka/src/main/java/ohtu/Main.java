@@ -12,18 +12,22 @@ public class Main {
         if ( args.length>0) {
             studentNr = args[0];
         }
-
-        String url = "https://studies.cs.helsinki.fi/courses/students/"+studentNr+"/submissions";
-
-        String bodyText = Request.Get(url).execute().returnContent().asString();
-
-        Gson mapper = new Gson();
-        Submission[] subs = mapper.fromJson(bodyText, Submission[].class);
+        
+        Submission[] subs = getSubmissionsForStudent(studentNr);
         
         System.out.println("Opiskelijanumero " + studentNr);
         for (Submission submission : subs) {
             System.out.println(submission);
         }
 
+    }
+    
+    public static Submission[] getSubmissionsForStudent(String studentNr) throws IOException {
+        String url = "https://studies.cs.helsinki.fi/courses/students/"+studentNr+"/submissions";
+
+        String bodyText = Request.Get(url).execute().returnContent().asString();
+
+        Gson mapper = new Gson();
+        return mapper.fromJson(bodyText, Submission[].class);
     }
 }
