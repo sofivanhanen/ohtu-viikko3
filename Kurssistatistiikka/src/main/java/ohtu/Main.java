@@ -19,6 +19,14 @@ public class Main {
         for (Submission submission : subs) {
             System.out.println(submission);
         }
+        System.out.println("");
+        
+        Course[] courses = getCourses();
+        
+        System.out.println("Kurssit");
+        for (Course course : courses) {
+            System.out.println(course);
+        }
 
     }
     
@@ -29,5 +37,14 @@ public class Main {
 
         Gson mapper = new Gson();
         return mapper.fromJson(bodyText, Submission[].class);
+    }
+    
+    public static Course[] getCourses() throws IOException {
+        String url = "https://studies.cs.helsinki.fi/courses/courseinfo";
+        
+        String bodyText = Request.Get(url).execute().returnContent().asString();
+        
+        Gson mapper = new Gson();
+        return mapper.fromJson(bodyText, Course[].class);
     }
 }
