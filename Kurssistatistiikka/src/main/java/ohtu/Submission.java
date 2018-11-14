@@ -37,10 +37,18 @@ public class Submission {
     public void setExercises(int[] exercises) {
         this.exercises = exercises;
     }
+    
+    private String exercisesAsString() {
+        String value = "";
+        for (int exercise : exercises) {
+            value += (" " + exercise);
+        }
+        return value;
+    }
 
     @Override
     public String toString() {
-        return ""+week;
+        return course + ": Viikko " + week + ": Tunteja käytetty " + hours + ", tehdyt tehtävät: " + exercisesAsString();
     }
     
 }

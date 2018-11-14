@@ -17,13 +17,10 @@ public class Main {
 
         String bodyText = Request.Get(url).execute().returnContent().asString();
 
-        System.out.println("json-muotoinen data:");
-        System.out.println( bodyText );
-
         Gson mapper = new Gson();
         Submission[] subs = mapper.fromJson(bodyText, Submission[].class);
         
-        System.out.println("Oliot:");
+        System.out.println("Opiskelijanumero " + studentNr);
         for (Submission submission : subs) {
             System.out.println(submission);
         }
