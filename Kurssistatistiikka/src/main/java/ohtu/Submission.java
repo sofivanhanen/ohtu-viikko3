@@ -38,7 +38,7 @@ public class Submission {
         this.exercises = exercises;
     }
     
-    private String exercisesAsString() {
+    public String exercisesAsString() {
         String value = "";
         for (int exercise : exercises) {
             value += (" " + exercise);
