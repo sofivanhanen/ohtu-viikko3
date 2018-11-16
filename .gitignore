@@ -2,3 +2,4 @@
 build/
 /Kurssistatistiikka/.nb-gradle/
 /HelloCucumber/.nb-gradle/
+/LoginCucumber/.nb-gradle/
