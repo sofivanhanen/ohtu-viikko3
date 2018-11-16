@@ -12,14 +12,10 @@ public class Tester {
         WebDriver driver = new HtmlUnitDriver();
         driver.get("http://localhost:4567");
         
-        sleep(2);
-        
         System.out.println(driver.getPageSource());
         
         WebElement element = driver.findElement(By.linkText("login"));
         element.click();
-
-        sleep(2);
         
         System.out.println(driver.getPageSource());
 
@@ -28,11 +24,7 @@ public class Tester {
         element = driver.findElement(By.name("password"));
         element.sendKeys("akkep");
         element = driver.findElement(By.name("login"));
-        
-        sleep(2);
         element.submit();
-
-        sleep(3);
         
         driver.quit();
     }
