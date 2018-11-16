@@ -40,7 +40,9 @@ public class AuthenticationService {
 
     private boolean invalid(String username, String password) {
         if (username.length() < 3) return true;
-        if (password.length() < 3) return true;
+        if (username.matches(".*\\d+.*")) return true;
+        if (password.length() < 8) return true;
+        if (!password.matches(".*\\d+.*")) return true;
         return false;
     }
 }
