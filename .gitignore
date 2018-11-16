@@ -1,3 +1,4 @@
 .gradle/
 build/
 /Kurssistatistiikka/.nb-gradle/
+/HelloCucumber/.nb-gradle/
