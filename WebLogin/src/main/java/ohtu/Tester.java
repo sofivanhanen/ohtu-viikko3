@@ -33,7 +33,50 @@ public class Tester {
         
         System.out.println(driver.getPageSource());
         
-        //
+        // Logout
+        printViewPurpose("logout");
+        
+        element = driver.findElement(By.linkText("logout"));
+        element.click();
+        
+        System.out.println(driver.getPageSource());
+        
+        // Failed login (incorrect password)
+        printViewPurpose("failed login: incorrect password");
+        
+        element = driver.findElement(By.linkText("login"));
+        element.click();
+        
+        System.out.println(driver.getPageSource());
+
+        element = driver.findElement(By.name("username"));
+        element.sendKeys("pekka");
+        element = driver.findElement(By.name("password"));
+        element.sendKeys("suklaaonhyvaa");
+        element = driver.findElement(By.name("login"));
+        element.submit();
+        
+        System.out.println(driver.getPageSource());
+        
+        // Failed login (unknown user )
+        printViewPurpose("failed login: unknown user");
+
+        element = driver.findElement(By.name("username"));
+        element.sendKeys("sofia");
+        element = driver.findElement(By.name("password"));
+        element.sendKeys("suklaaonhyvaa");
+        element = driver.findElement(By.name("login"));
+        element.submit();
+        
+        System.out.println(driver.getPageSource());
+        
+        // Go back
+        printViewPurpose("back to front page");
+        
+        element = driver.findElement(By.linkText("back to home"));
+        element.click();
+        
+        System.out.println(driver.getPageSource());
         
         driver.quit();
     }
