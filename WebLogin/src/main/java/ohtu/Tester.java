@@ -12,7 +12,12 @@ public class Tester {
         WebDriver driver = new HtmlUnitDriver();
         driver.get("http://localhost:4567");
         
+        // Front page
+        printViewPurpose("front page");
         System.out.println(driver.getPageSource());
+        
+        // Login
+        printViewPurpose("login");
         
         WebElement element = driver.findElement(By.linkText("login"));
         element.click();
@@ -26,7 +31,17 @@ public class Tester {
         element = driver.findElement(By.name("login"));
         element.submit();
         
+        System.out.println(driver.getPageSource());
+        
+        //
+        
         driver.quit();
+    }
+    
+    private static void printViewPurpose(String purpose) {
+        System.out.println("    ------------");
+        System.out.println("    " + purpose.toUpperCase());
+        System.out.println("    ------------");
     }
     
     private static void sleep(int n){
