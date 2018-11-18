@@ -49,6 +49,21 @@ public class Stepdefs {
         registerWith(username, password);
     }
     
+    @When("^an invalid username \"([^\"]*)\" and valid password \"([^\"]*)\" and matching password confirmation are entered$")
+    public void an_invalid_username_and_valid_password_and_matching_password_confirmation_are_entered(String username, String password) throws Throwable {
+        registerWith(username, password);
+    }
+    
+    @When("^a valid username \"([^\"]*)\" and invalid password \"([^\"]*)\" and matching password confirmation are entered$")
+    public void a_valid_username_and_invalid_password_and_matching_password_confirmation_are_entered(String username, String password) throws Throwable {
+        registerWith(username, password);
+    }
+
+    @When("^a valid username \"([^\"]*)\" and password \"([^\"]*)\" and non-matching password \"([^\"]*)\" are entered$")
+    public void a_valid_username_and_password_and_non_matching_password_are_entered(String username, String passwordFirst, String passwordSecond) throws Throwable {
+        registerWith(username, passwordFirst, passwordSecond);
+    }
+    
     @Then("^user is logged in$")
     public void user_is_logged_in() throws Throwable {
         pageHasContent("Ohtu Application main page");
@@ -63,6 +78,12 @@ public class Stepdefs {
     @Then("^a new user is created$")
     public void a_new_user_is_created() throws Throwable {
         pageHasContent("Welcome to Ohtu Application!");
+    }
+    
+    @Then("^user is not created and error \"([^\"]*)\" is reported$")
+    public void user_is_not_created_and_error_is_reported(String error) throws Throwable {
+        pageHasContent(error);
+        pageHasContent("Create username and give password");
     }
     
     @After
@@ -87,13 +108,17 @@ public class Stepdefs {
     }
     
     private void registerWith(String username, String password) {
+        registerWith(username, password, password);
+    }
+    
+    private void registerWith(String username, String passwordFirst, String passwordSecond) {
         assertTrue(driver.getPageSource().contains("Create username and give password"));
         WebElement element = driver.findElement(By.name("username"));
         element.sendKeys(username);
         element = driver.findElement(By.name("password"));
-        element.sendKeys(password);
+        element.sendKeys(passwordFirst);
         element = driver.findElement(By.name("passwordConfirmation"));
-        element.sendKeys(password);
+        element.sendKeys(passwordSecond);
         element = driver.findElement(By.name("signup"));
         element.submit();  
     }
