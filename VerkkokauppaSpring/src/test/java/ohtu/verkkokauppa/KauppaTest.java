@@ -7,12 +7,13 @@ import static org.mockito.Mockito.*;
 public class KauppaTest {
     
     Pankki pankki;
+    Viitegeneraattori viite;
     Kauppa kauppa;
     
     @Before
     public void setUp() {
         pankki = mock(Pankki.class);
-        Viitegeneraattori viite = mock(Viitegeneraattori.class);
+        viite = mock(Viitegeneraattori.class);
         when(viite.uusi()).thenReturn(42);
         Varasto varasto = mock(Varasto.class);
         
@@ -63,6 +64,29 @@ public class KauppaTest {
         kauppa.tilimaksu("pekka", "12345");
 
         verify(pankki).tilisiirto(eq("pekka"), anyInt(), eq("12345"), anyString(), eq(5));
+    }
+    
+    @Test
+    public void aloitaAsiontiNollaaOstoskorin() {
+        kauppa.aloitaAsiointi();
+        kauppa.lisaaKoriin(1);
+        kauppa.aloitaAsiointi();
+        kauppa.lisaaKoriin(2);
+        kauppa.tilimaksu("anneli", "98765");
+        
+        verify(pankki).tilisiirto(eq("anneli"), anyInt(), eq("98765"), anyString(), eq(8));
+    }
+    
+    @Test
+    public void viitenumeroUusitaanAina() {
+        kauppa.aloitaAsiointi();
+        kauppa.lisaaKoriin(1);
+        kauppa.tilimaksu("hilda", "76543");
+        kauppa.aloitaAsiointi();
+        kauppa.lisaaKoriin(2);
+        kauppa.tilimaksu("anneli", "98765");
+        
+        verify(viite, times(2)).uusi();
     }
     
 }
