@@ -89,4 +89,16 @@ public class KauppaTest {
         verify(viite, times(2)).uusi();
     }
     
+    @Test
+    public void koristaVoiPoistaa() {
+        kauppa.aloitaAsiointi();
+        kauppa.lisaaKoriin(1);
+        kauppa.lisaaKoriin(1);
+        kauppa.lisaaKoriin(2);
+        kauppa.poistaKorista(1);
+        kauppa.tilimaksu("hilda", "76543");
+        
+        verify(pankki).tilisiirto(eq("hilda"), anyInt(), eq("76543"), anyString(), eq(5 + 8));
+    }
+    
 }

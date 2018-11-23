@@ -14,8 +14,8 @@ public class Ostoskori {
         tuotteet.add(t);
     }
 
-    public void poista(Tuote t) {
-        tuotteet.remove(t);
+    public boolean poista(Tuote t) {
+        return tuotteet.remove(t);
     }
 
     public int hinta() {
