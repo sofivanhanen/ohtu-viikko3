@@ -24,25 +24,7 @@ public class TennisGame {
         int tempScore=0;
         if (score1==score2)
         {
-            switch (score1)
-            {
-                case 0:
-                        score = "Love-All";
-                    break;
-                case 1:
-                        score = "Fifteen-All";
-                    break;
-                case 2:
-                        score = "Thirty-All";
-                    break;
-                case 3:
-                        score = "Forty-All";
-                    break;
-                default:
-                        score = "Deuce";
-                    break;
-                
-            }
+            return scoreAll(score1);
         }
         else if (score1>=4 || score2>=4)
         {
@@ -76,5 +58,25 @@ public class TennisGame {
             }
         }
         return score;
+    }
+    
+    private String score(int score) {
+        switch (score1) {
+            case 0:
+                return "Love";
+            case 1:
+                return "Fifteen";
+            case 2:
+                return "Thirty";
+            case 3:
+                return "Forty";
+            default:
+                throw new IllegalArgumentException("Asked for score with " + score);
+        }
+    }
+    
+    private String scoreAll(int score) {
+        if (score < 4) return score(score) + "-All";
+        else return "Deuce";
     }
 }
