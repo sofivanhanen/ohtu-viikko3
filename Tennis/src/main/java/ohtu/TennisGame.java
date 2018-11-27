@@ -20,40 +20,9 @@ public class TennisGame {
     }
 
     public String getScore() {
-        String score = "";
-        int tempScore=0;
-        if (score1==score2)
-        {
-            return scoreAll(score1);
-        }
-        else if (score1>=4 || score2>=4)
-        {
-            return scoreAdvantage(score1, score2);
-        }
-        else
-        {
-            for (int i=1; i<3; i++)
-            {
-                if (i==1) tempScore = score1;
-                else { score+="-"; tempScore = score2;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
-        }
-        return score;
+        if (score1==score2) return scoreAll(score1);
+        else if (score1>=4 || score2>=4) return scoreAdvantage(score1, score2);
+        else return scoreLowPoints(score1, score2);
     }
     
     private static String score(int score) {
@@ -69,6 +38,10 @@ public class TennisGame {
             default:
                 throw new IllegalArgumentException("Asked for score with " + score);
         }
+    }
+    
+    private static String scoreLowPoints(int score1, int score2) {
+        return score(score1) + "-" + score(score2);
     }
     
     private static String scoreAdvantage(int score1, int score2) {
