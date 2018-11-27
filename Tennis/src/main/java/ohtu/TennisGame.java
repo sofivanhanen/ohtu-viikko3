@@ -28,11 +28,7 @@ public class TennisGame {
         }
         else if (score1>=4 || score2>=4)
         {
-            int minusResult = score1-score2;
-            if (minusResult==1) score ="Advantage player1";
-            else if (minusResult ==-1) score ="Advantage player2";
-            else if (minusResult>=2) score = "Win for player1";
-            else score ="Win for player2";
+            return scoreAdvantage(score1, score2);
         }
         else
         {
@@ -60,8 +56,8 @@ public class TennisGame {
         return score;
     }
     
-    private String score(int score) {
-        switch (score1) {
+    private static String score(int score) {
+        switch (score) {
             case 0:
                 return "Love";
             case 1:
@@ -75,7 +71,15 @@ public class TennisGame {
         }
     }
     
-    private String scoreAll(int score) {
+    private static String scoreAdvantage(int score1, int score2) {
+        int diff = score1-score2;
+        if (diff == 1) return "Advantage player1";
+        else if (diff == -1) return "Advantage player2";
+        else if (diff >= 2) return "Win for player1";
+        else return "Win for player2";
+    }
+    
+    private static String scoreAll(int score) {
         if (score < 4) return score(score) + "-All";
         else return "Deuce";
     }
