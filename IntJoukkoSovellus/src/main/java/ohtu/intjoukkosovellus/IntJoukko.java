@@ -11,33 +11,19 @@ public class IntJoukko {
     private int alkioidenLkm;
 
     public IntJoukko() {
-        lukujono = new int[KAPASITEETTI_OLETUS];
-        for (int i = 0; i < lukujono.length; i++) {
-            lukujono[i] = 0;
-        }
-        alkioidenLkm = 0;
-        kasvatuskoko = KASVATUSKOKO_OLETUS;
+        this(KAPASITEETTI_OLETUS, KASVATUSKOKO_OLETUS);
     }
 
     public IntJoukko(int kapasiteetti) {
-        if (kapasiteetti < 0) {
-            return;
-        }
-        lukujono = new int[kapasiteetti];
-        for (int i = 0; i < lukujono.length; i++) {
-            lukujono[i] = 0;
-        }
-        alkioidenLkm = 0;
-        kasvatuskoko = KASVATUSKOKO_OLETUS;
+        this(kapasiteetti, KASVATUSKOKO_OLETUS);
     }
-    
-    
+
     public IntJoukko(int kapasiteetti, int kasvatuskoko) {
         if (kapasiteetti < 0) {
-            throw new IndexOutOfBoundsException("Kapasitteetti väärin");//heitin vaan jotain :D
+            throw new IllegalArgumentException("Kapasiteetti liian pieni: " + kapasiteetti);
         }
         if (kasvatuskoko < 0) {
-            throw new IndexOutOfBoundsException("kapasiteetti2");//heitin vaan jotain :D
+            throw new IllegalArgumentException("Kasvatuskoko liian pieni: " + kasvatuskoko);
         }
         lukujono = new int[kapasiteetti];
         for (int i = 0; i < lukujono.length; i++) {
