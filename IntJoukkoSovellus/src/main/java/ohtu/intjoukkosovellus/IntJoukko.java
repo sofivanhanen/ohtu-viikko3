@@ -3,18 +3,20 @@ package ohtu.intjoukkosovellus;
 
 public class IntJoukko {
 
-    private final static int KAPASITEETTI = 5,
-                            OLETUSKASVATUS = 5;
+    private final static int KAPASITEETTI_OLETUS = 5,
+                            KASVATUSKOKO_OLETUS = 5;
     
+    private int kasvatuskoko;
     private int[] lukujono;
     private int alkioidenLkm;
 
     public IntJoukko() {
-        lukujono = new int[KAPASITEETTI];
+        lukujono = new int[KAPASITEETTI_OLETUS];
         for (int i = 0; i < lukujono.length; i++) {
             lukujono[i] = 0;
         }
         alkioidenLkm = 0;
+        kasvatuskoko = KASVATUSKOKO_OLETUS;
     }
 
     public IntJoukko(int kapasiteetti) {
@@ -26,7 +28,7 @@ public class IntJoukko {
             lukujono[i] = 0;
         }
         alkioidenLkm = 0;
-
+        kasvatuskoko = KASVATUSKOKO_OLETUS;
     }
     
     
@@ -42,7 +44,7 @@ public class IntJoukko {
             lukujono[i] = 0;
         }
         alkioidenLkm = 0;
-
+        this.kasvatuskoko = kasvatuskoko;
     }
 
     public boolean lisaa(int luku) {
@@ -61,7 +63,7 @@ public class IntJoukko {
                 int[] taulukkoOld = new int[lukujono.length];
                 taulukkoOld = lukujono;
                 kopioiTaulukko(lukujono, taulukkoOld);
-                lukujono = new int[alkioidenLkm + OLETUSKASVATUS];
+                lukujono = new int[alkioidenLkm + KASVATUSKOKO_OLETUS];
                 kopioiTaulukko(taulukkoOld, lukujono);
             }
             return true;
