@@ -12,24 +12,28 @@ public class Erotus implements Komento {
     private Button peru;
     private Sovelluslogiikka sovellus;
     
+    private int edellinenMuuttuja;
+    
     public Erotus(TextField tulosKentta, TextField syoteKentta, Button nollaa, Button peru, Sovelluslogiikka sovellus) {
         this.tulosKentta = tulosKentta;
         this.syoteKentta = syoteKentta;
         this.nollaa = nollaa;
         this.peru = peru;
         this.sovellus = sovellus;
+        
+        edellinenMuuttuja = 0;
     }
 
     @Override
     public void suorita() {
-        int arvo = 0;
+        edellinenMuuttuja = 0;
 
         try {
-            arvo = Integer.parseInt(syoteKentta.getText());
+            edellinenMuuttuja = Integer.parseInt(syoteKentta.getText());
         } catch (Exception e) {
         }
 
-        sovellus.miinus(arvo);
+        sovellus.miinus(edellinenMuuttuja);
 
         int laskunTulos = sovellus.tulos();
 
@@ -46,7 +50,10 @@ public class Erotus implements Komento {
 
     @Override
     public void peru() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        sovellus.plus(edellinenMuuttuja);
+        int laskunTulos = sovellus.tulos();
+        tulosKentta.setText("" + laskunTulos);
+        peru.disableProperty().set(true);
     }
     
 }
