@@ -8,7 +8,6 @@ public class Paaohjelma {
 
     public static void main(String[] args) {
         System.out.println("Tervetuloa Kivi-Paperi-Sakset -peliin!");
-        System.out.println("Peli loppuu kun pelaaja antaa virheellisen siirron eli jonkun muun kuin k, p tai s");
         System.out.println("\nValitse pelataanko"
                 + "\n (a) ihmistä vastaan "
                 + "\n (b) tekoälyä vastaan"
@@ -16,6 +15,5 @@ public class Paaohjelma {
                 + "\nmuilla valinnoilla lopetataan");
         String vastaus = scanner.nextLine();
         Pelitehdas.aloitaPeli(vastaus);
-        System.out.println("\nKiitos kun pelasit!");
     }
 }
