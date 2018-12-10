@@ -2,10 +2,11 @@ package ohtu.kivipaperisakset;
 
 import java.util.Scanner;
 
-public class KPSTekoaly {
+public class KPSTekoaly extends KPS{
 
     private static final Scanner scanner = new Scanner(System.in);
 
+    @Override
     public void pelaa() {
         Tuomari tuomari = new Tuomari();
         Tekoaly tekoaly = new Tekoaly();
