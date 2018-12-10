@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Pelitehdas {
+public class PelinAloittaja {
 
     public static void aloitaPeli(String komento) {
         KPS peli = paataSopivaPeli(komento);

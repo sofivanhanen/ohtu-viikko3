@@ -1,9 +1,7 @@
 package ohtu.kivipaperisakset;
 
-import java.util.Scanner;
+public class KPSTekoaly extends KPS {
 
-public class KPSTekoaly extends KPS{
-    
     private Tekoaly tekoaly = new Tekoaly();
 
     @Override

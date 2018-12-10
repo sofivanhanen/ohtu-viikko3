@@ -14,6 +14,6 @@ public class Paaohjelma {
                 + "\n (c) parannettua tekoälyä vastaan"
                 + "\nmuilla valinnoilla lopetataan");
         String vastaus = scanner.nextLine();
-        Pelitehdas.aloitaPeli(vastaus);
+        PelinAloittaja.aloitaPeli(vastaus);
     }
 }
